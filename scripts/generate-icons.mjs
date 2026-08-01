@@ -9,7 +9,7 @@ for (const [file, size] of [
   ['public/icon-192.png', 192],
   ['public/icon-512.png', 512],
   ['/tmp/fav-32.png', 32],
-]) await sharp(mono, { density: 300 }).resize(size, size).png().toFile(file);
+]) await sharp(mono, { density: 300 }).resize(size, size).flatten({ background: '#faf6ef' }).png().toFile(file);
 await writeFile('public/favicon.ico', await pngToIco(['/tmp/fav-32.png']));
 await sharp('assets/brand/og-template.svg', { density: 150 }).resize(1200, 630).png().toFile('public/og.png');
 console.log('icons + og done');
