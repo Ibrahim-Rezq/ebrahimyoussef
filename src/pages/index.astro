@@ -6,10 +6,13 @@ import Products from '../components/Products.astro';
 import DevLogs from '../components/DevLogs.astro';
 import Socials from '../components/Socials.astro';
 import Footer from '../components/Footer.astro';
+import GameDrawer from '../components/game/GameDrawer';
 ---
 
 <BaseLayout>
-	<Hero />
+	<Hero>
+		<GameDrawer client:idle slot="play-trigger" />
+	</Hero>
 	<main id="main">
 		<Proof />
 		<Products />

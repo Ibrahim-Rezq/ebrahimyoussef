@@ -1,0 +1,338 @@
+/* ---------- drawer shell ---------- */
+
+dialog.game-drawer {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+  width: min(28rem, 100vw);
+  max-width: min(28rem, 100vw);
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-inline-start: 1px solid var(--gold-soft);
+  background: var(--base);
+  color: var(--ink);
+  font-family: var(--font);
+  box-shadow: var(--shadow-lift);
+  transform: translateX(100%);
+  transition:
+    transform 0.3s var(--ease-spring),
+    overlay 0.3s allow-discrete,
+    display 0.3s allow-discrete;
+}
+
+dialog.game-drawer[open] {
+  transform: translateX(0);
+}
+
+@starting-style {
+  dialog.game-drawer[open] {
+    transform: translateX(100%);
+  }
+}
+
+dialog.game-drawer::backdrop {
+  background: rgb(43 33 24 / 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.game-drawer,
+  dialog.game-drawer[open] {
+    transition: none;
+    transform: translateX(0);
+  }
+  @starting-style {
+    dialog.game-drawer[open] {
+      transform: translateX(0);
+    }
+  }
+}
+
+.drawer-close {
+  position: absolute;
+  top: 0.75rem;
+  inset-inline-end: 0.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  background: transparent;
+  color: var(--ink);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.drawer-close:hover {
+  background: var(--surface);
+}
+
+.drawer-loading {
+  padding: 4rem 1.5rem;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+/* ---------- game shell ---------- */
+
+.game {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.game-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 4rem 1.5rem 1.5rem;
+}
+.game-footer {
+  padding: 0.75rem 1.5rem 1.25rem;
+  border-top: 1px solid var(--gold-soft);
+}
+.proof-caption {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+/* ---------- mode select ---------- */
+
+.mode-select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  padding-block: 1rem;
+}
+.game-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.game-intro {
+  margin: 0;
+  color: var(--ink-soft);
+  max-width: 32ch;
+}
+.streak-badge {
+  margin: 0;
+  font-weight: 600;
+  color: var(--terra-deep);
+  background: var(--surface);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+}
+.mode-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.mode-btn {
+  justify-content: center;
+  width: 100%;
+}
+
+/* ---------- round header ---------- */
+
+.game-progress {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.game-hint {
+  font-size: 1.05rem;
+  margin: 0 0 1.5rem;
+}
+
+/* ---------- tap mode ---------- */
+
+.tap-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+.tap-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  border-radius: var(--r-md);
+  border: 2px solid var(--gold-soft);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: center;
+  transition:
+    transform 0.15s var(--ease-spring),
+    border-color 0.15s,
+    background 0.15s;
+}
+.tap-option:hover {
+  border-color: var(--terra-deep);
+  transform: translateY(-2px);
+}
+.tap-option-ar {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.tap-option-en {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- write mode ---------- */
+
+.write-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.write-form label {
+  font-weight: 600;
+}
+.write-input {
+  font-size: 16px;
+  padding: 0.75rem 1rem;
+  border-radius: var(--r-md);
+  border: 2px solid var(--gold-soft);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font);
+}
+.write-input:focus-visible {
+  border-color: var(--terra-deep);
+}
+.write-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.link-quiet {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--terra-deep);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* ---------- figure card (reveal) ---------- */
+
+.figure-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: var(--r-lg);
+  padding: 0.25rem;
+}
+.figure-card-status {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.figure-card.is-correct .figure-card-status {
+  color: var(--terra-deep);
+}
+.figure-card-name {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--terra-deep);
+}
+.figure-card-honorific {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.figure-card-name-en {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+.figure-card-fact {
+  margin: 0;
+}
+.figure-card-fact-ar {
+  margin: 0;
+  color: var(--ink-soft);
+}
+.figure-card-next {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+.figure-card.is-correct {
+  animation: card-flash 0.5s var(--ease-spring);
+}
+.figure-card.is-incorrect {
+  animation: card-shake 0.4s var(--ease-spring);
+}
+@keyframes card-flash {
+  0% {
+    background: var(--gold-soft);
+  }
+  100% {
+    background: transparent;
+  }
+}
+@keyframes card-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .figure-card.is-correct,
+  .figure-card.is-incorrect {
+    animation: none;
+  }
+}
+
+/* ---------- end screen ---------- */
+
+.end-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+.end-headline {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.end-best {
+  margin: 0;
+  color: var(--ink-soft);
+}
+.end-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.toast {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  color: var(--terra-deep);
+}

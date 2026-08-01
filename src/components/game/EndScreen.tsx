@@ -1,0 +1,80 @@
+import { useState } from 'react';
+import { drawShareCard, headlineText, shareMessage } from './shareCard';
+
+interface EndScreenProps {
+  score: number;
+  total: number;
+  seconds: number;
+  streak: number;
+  best: number;
+  onPlayAgain: () => void;
+  onSwitchMode: () => void;
+}
+
+export default function EndScreen({
+  score,
+  total,
+  seconds,
+  streak,
+  best,
+  onPlayAgain,
+  onSwitchMode,
+}: EndScreenProps) {
+  const [sharing, setSharing] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+
+  async function handleShare() {
+    setSharing(true);
+    const data = { score, total, seconds };
+    try {
+      const blob = await drawShareCard(data);
+      const text = shareMessage(data);
+      const file = blob ? new File([blob], 'ey-figures-game.png', { type: 'image/png' }) : null;
+      const canShareFiles =
+        !!file && typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
+
+      if (canShareFiles && file && navigator.share) {
+        try {
+          await navigator.share({ files: [file], text });
+        } catch {
+          /* user dismissed the native share sheet — leave silently, no clipboard fallback */
+        }
+        return;
+      }
+
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        setToast('Copied!');
+        window.setTimeout(() => setToast(null), 2200);
+      }
+    } finally {
+      setSharing(false);
+    }
+  }
+
+  return (
+    <div className="end-screen">
+      <h2 className="end-headline">{headlineText({ score, total, seconds })}</h2>
+      {streak >= 2 && <p className="streak-badge">🔥 {streak}-day streak</p>}
+      <p className="end-best">
+        Best: {best} of {total}
+      </p>
+      <div className="end-actions">
+        <button type="button" className="btn btn-primary" onClick={handleShare} disabled={sharing}>
+          {sharing ? 'Preparing…' : 'Share'}
+        </button>
+        <button type="button" className="btn btn-ghost" onClick={onPlayAgain}>
+          Play again
+        </button>
+        <button type="button" className="link-quiet" onClick={onSwitchMode}>
+          Switch mode
+        </button>
+      </div>
+      {toast && (
+        <p className="toast" role="status">
+          {toast}
+        </p>
+      )}
+    </div>
+  );
+}
