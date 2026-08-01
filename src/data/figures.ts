@@ -244,9 +244,9 @@ export const figures: Figure[] = [
     nameEn: 'Imam al-Bukhari',
     honorific: 'رحمه الله',
     category: 'scholar',
-    hintEn: 'Compiled the most authentic collection of Prophetic hadith after sifting through hundreds of thousands of narrations.',
-    factEn: 'He compiled the most authoritative hadith collection, examining hundreds of thousands of narrations under strict conditions. His book ranks as the most trusted work after the Quran.',
-    factAr: 'جمع أصح كتب الحديث بعد أن محّص مئات الآلاف من الروايات واشترط لها شروطًا دقيقة، فصار كتابه أوثق مصنّف بعد القرآن الكريم.',
+    hintEn: 'Regarded by many as having compiled the most authentic collection of Prophetic hadith, after sifting through hundreds of thousands of narrations.',
+    factEn: 'He compiled a hadith collection widely regarded by Muslims as among the most authentic ever assembled, examining hundreds of thousands of narrations under strict conditions for reliability.',
+    factAr: 'جمع كتابًا في الحديث يعدّه المسلمون من أوثق ما صُنِّف في هذا الباب، بعد أن محّص مئات الآلاف من الروايات واشترط لقبولها شروطًا دقيقة.',
     accepted: ['الإمام البخاري', 'البخاري'],
   },
   {
@@ -279,7 +279,7 @@ export const figures: Figure[] = [
     category: 'scholar',
     hintEn: 'Endured imprisonment and beating rather than publicly affirm a state-imposed theological doctrine, and compiled a vast collection of hadith known as the Musnad.',
     factEn: "He endured imprisonment and beating in a doctrinal controversy rather than recant, and compiled tens of thousands of hadith in his 'Musnad.' He was a leading authority in both law and hadith.",
-    factAr: 'صبر على السجن والضرب في محنة خلق القرآن ولم يتراجع عن الحق، وجمع في مسنده عشرات الآلاف من الأحاديث، وكان إمامًا في الفقه والحديث معًا.',
+    factAr: 'صبر على السجن والضرب في محنة خلق القرآن وثبت على قوله ولم يتراجع، وجمع في مسنده عشرات الآلاف من الأحاديث، وكان إمامًا في الفقه والحديث معًا.',
     accepted: ['الإمام أحمد بن حنبل', 'أحمد بن حنبل'],
   },
 ];

@@ -2,7 +2,7 @@ import type { Figure } from '../../data/figures';
 
 export function normalizeArabic(s: string): string {
   return s
-    .replace(/[ً-ٰٟـ]/g, '') // harakat, dagger alif, tatweel
+    .replace(/[ً-ٰٟـ]/g, '') // harakat, dagger alif, tatweel
     .replace(/[أإآٱ]/g, 'ا')
     .replace(/ى/g, 'ي')
     .replace(/ة/g, 'ه')
