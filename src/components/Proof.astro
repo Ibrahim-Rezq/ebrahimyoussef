@@ -1,0 +1,41 @@
+---
+import { proof } from '../data/proof';
+---
+
+<section id="proof" class="section">
+  <div class="wrap">
+    <h2 class="section-title">What I can build</h2>
+    <div class="card-grid">
+      {
+        proof.map((card) => (
+          <article class="card">
+            <h3>{card.title}</h3>
+            <p class="card-body">{card.body}</p>
+            <a class="card-evidence" href={card.href} rel={card.href.startsWith('#') ? undefined : 'noopener'}>
+              {card.evidence}
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+  h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.125rem;
+  }
+  .card-body {
+    margin: 0 0 1.25rem;
+    color: var(--ink-soft);
+  }
+  .card-evidence {
+    margin-top: auto;
+    font-weight: 600;
+  }
+</style>

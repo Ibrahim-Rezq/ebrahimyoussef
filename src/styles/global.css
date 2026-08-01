@@ -8,6 +8,7 @@
   --ink-soft: #5c5040;    /* secondary text on base ≈6.8:1 */
   --terra: #c05c21;       /* decorative, large display, hovers (≈3.4:1 — never small text) */
   --terra-deep: #96431a;  /* links, buttons bg, small accents (≈5.4:1 on base) */
+  --terra-hover: #7d3816; /* primary btn hover bg; base text on it ≈7.96:1 (AA) */
   --gold: #c4972f;        /* decorative strokes only — never text */
   --gold-soft: #e4d3a1;   /* hairlines, pattern fills */
 
@@ -46,6 +47,22 @@ a { color: var(--terra-deep); }
 .section { padding-block: var(--section-pad); }
 .wrap { max-width: var(--content-w); margin-inline: auto; padding-inline: 1.25rem; }
 
+.section-title { margin: 0 0 2rem; }
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.5rem;
+}
+.card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: 1.75rem;
+  border-top: 3px solid var(--gold-soft);
+  box-shadow: var(--shadow-lift);
+  transition: transform 0.25s var(--ease-spring);
+}
+.card:hover { transform: translateY(-4px); }
+
 .btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
   font-weight: 600; text-decoration: none; cursor: pointer;
@@ -54,7 +71,7 @@ a { color: var(--terra-deep); }
   transition: transform 0.15s var(--ease-spring), background 0.15s;
 }
 .btn-primary { background: var(--terra-deep); color: var(--base); }
-.btn-primary:hover { background: var(--terra); transform: translateY(-2px); }
+.btn-primary:hover { background: var(--terra-hover); transform: translateY(-2px); }
 .btn-ghost { border-color: var(--terra-deep); color: var(--terra-deep); background: transparent; }
 .btn-ghost:hover { background: var(--surface); transform: translateY(-2px); }
 

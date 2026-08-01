@@ -1,0 +1,68 @@
+---
+import Monogram from './Monogram.astro';
+import Arabesque from './Arabesque.astro';
+import { SITE } from '../data/site';
+---
+
+<header class="hero">
+  <Arabesque variant="tile" />
+  <div class="wrap hero-inner">
+    <div class="hero-mark">
+      <Monogram size={56} />
+      <p class="hero-name">{SITE.name}</p>
+    </div>
+    <h1>{SITE.tagline}</h1>
+    <p class="hero-sub">I build products for the Muslim web — and share everything I learn along the way.</p>
+    <div class="hero-cta" id="play">
+      <slot name="play-trigger" />
+      <a class="btn btn-ghost" href="#products">See what I build</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(5rem, 12vh, 8rem);
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-mark {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 700;
+    margin: 0;
+    max-width: 20ch;
+  }
+  .hero-sub {
+    font-size: 1.125rem;
+    color: var(--ink-soft);
+    max-width: 42ch;
+    margin: 1.25rem 0 2rem;
+  }
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>

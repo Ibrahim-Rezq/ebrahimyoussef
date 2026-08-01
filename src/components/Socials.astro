@@ -1,0 +1,58 @@
+---
+import { SITE } from '../data/site';
+---
+
+<section id="socials" class="section">
+  <div class="wrap">
+    <h2 class="section-title">Follow the journey</h2>
+    <p class="socials-intro">Short, practical front-end things for self-taught devs. Same posts, two homes: English on LinkedIn, Arabic on Qabilah.</p>
+    <div class="socials-grid">
+      <a class="social-card" href={SITE.socials.linkedin} rel="noopener">
+        <h3>LinkedIn</h3>
+        <p class="social-card-lang">English</p>
+      </a>
+      <a class="social-card" href={SITE.socials.qabilah} rel="noopener">
+        <h3 dir="rtl" lang="ar">قبيلة</h3>
+        <p class="social-card-lang">Arabic</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .socials-intro {
+    max-width: 48ch;
+    color: var(--ink-soft);
+    font-size: 1.125rem;
+    margin: 0 0 2rem;
+  }
+  .socials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.5rem;
+    max-width: 40rem;
+  }
+  .social-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    border-radius: var(--r-lg);
+    padding: 1.75rem;
+    border-top: 3px solid var(--gold-soft);
+    box-shadow: var(--shadow-lift);
+    transition: transform 0.25s var(--ease-spring);
+  }
+  .social-card:hover {
+    transform: translateY(-4px);
+  }
+  .social-card h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+  }
+  .social-card-lang {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+</style>

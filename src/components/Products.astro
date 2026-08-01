@@ -1,0 +1,57 @@
+---
+import Arabesque from './Arabesque.astro';
+import { products } from '../data/products';
+---
+
+<section id="products" class="section">
+  <div class="wrap">
+    <Arabesque variant="divider" />
+    <h2 class="section-title">Things I've built for you</h2>
+    <div class="card-grid">
+      {
+        products.map((product) => (
+          <article class="card product-card">
+            <h3>{product.name}</h3>
+            <p class="card-body">{product.blurb}</p>
+            <div class="product-actions">
+              <a
+                class="btn btn-primary"
+                href={product.href}
+                rel={product.href.startsWith('#') ? undefined : 'noopener'}
+              >
+                {product.cta}
+              </a>
+              {
+                product.repo && (
+                  <a class="btn btn-ghost" href={product.repo} rel="noopener">Source</a>
+                )
+              }
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-card {
+    display: flex;
+    flex-direction: column;
+  }
+  h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.125rem;
+  }
+  .card-body {
+    margin: 0 0 1.5rem;
+    color: var(--ink-soft);
+  }
+  .product-actions {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+</style>
