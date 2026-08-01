@@ -18,12 +18,13 @@ import { products } from '../data/products';
                 class="btn btn-primary"
                 href={product.href}
                 rel={product.href.startsWith('#') ? undefined : 'noopener'}
+                target={product.href.startsWith('#') ? undefined : '_blank'}
               >
                 {product.cta}
               </a>
               {
                 product.repo && (
-                  <a class="btn btn-ghost" href={product.repo} rel="noopener">Source</a>
+                  <a class="btn btn-ghost" href={product.repo} rel="noopener" target="_blank">Source</a>
                 )
               }
             </div>

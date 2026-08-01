@@ -22,9 +22,11 @@ export default function EndScreen({
 }: EndScreenProps) {
   const [sharing, setSharing] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+  const [shareError, setShareError] = useState<string | null>(null);
 
   async function handleShare() {
     setSharing(true);
+    setShareError(null);
     const data = { score, total, seconds };
     try {
       const blob = await drawShareCard(data);
@@ -47,6 +49,8 @@ export default function EndScreen({
         setToast('Copied!');
         window.setTimeout(() => setToast(null), 2200);
       }
+    } catch {
+      setShareError("Couldn't share — copy blocked by the browser.");
     } finally {
       setSharing(false);
     }
@@ -73,6 +77,11 @@ export default function EndScreen({
       {toast && (
         <p className="toast" role="status">
           {toast}
+        </p>
+      )}
+      {shareError && (
+        <p className="share-error" role="status">
+          {shareError}
         </p>
       )}
     </div>

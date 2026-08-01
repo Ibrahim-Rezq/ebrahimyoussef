@@ -336,3 +336,8 @@ dialog.game-drawer::backdrop {
   font-size: 0.9rem;
   color: var(--terra-deep);
 }
+.share-error {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}

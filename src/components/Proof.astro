@@ -11,7 +11,12 @@ import { proof } from '../data/proof';
           <article class="card">
             <h3>{card.title}</h3>
             <p class="card-body">{card.body}</p>
-            <a class="card-evidence" href={card.href} rel={card.href.startsWith('#') ? undefined : 'noopener'}>
+            <a
+              class="card-evidence"
+              href={card.href}
+              rel={card.href.startsWith('#') ? undefined : 'noopener'}
+              target={card.href.startsWith('#') ? undefined : '_blank'}
+            >
               {card.evidence}
             </a>
           </article>
