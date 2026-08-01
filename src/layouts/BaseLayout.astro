@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import { SITE } from '../data/site';
+const title = `${SITE.name} — ${SITE.tagline.replace(/\.$/, '')}`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      name: SITE.name,
+      url: SITE.url,
+      email: `mailto:${SITE.email}`,
+      jobTitle: 'Front-end Engineer',
+      sameAs: [SITE.socials.github, SITE.socials.linkedin, SITE.socials.qabilah],
+    },
+    { '@type': 'WebSite', name: SITE.name, url: SITE.url },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={SITE.description} />
+    <link rel="canonical" href={SITE.url} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#c05c21" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={SITE.description} />
+    <meta property="og:url" content={SITE.url} />
+    <meta property="og:image" content={`${SITE.url}/og.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+  </body>
+</html>
