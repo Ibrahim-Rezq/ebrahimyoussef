@@ -33,7 +33,17 @@ if (!html.includes('rel="canonical" href="https://ebrahimyoussef.com"')) {
   throw new Error('Missing production canonical URL');
 }
 
-if (!html.includes('property="og:image"') || !html.includes('name="twitter:card"')) {
+const socialMetadata = [
+  'property="og:image"',
+  'property="og:image:alt"',
+  'name="twitter:card"',
+  'name="twitter:title"',
+  'name="twitter:description"',
+  'name="twitter:image"',
+  'name="twitter:image:alt"',
+];
+
+if (socialMetadata.some((attribute) => !html.includes(attribute))) {
   throw new Error('Missing social metadata');
 }
 

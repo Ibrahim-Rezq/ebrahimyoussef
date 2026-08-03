@@ -1,40 +1,52 @@
 # ebrahimyoussef.com
 
-Personal site for Ebrahim Youssef. One page: an intro, proof of work, product
-links, dev-log placeholder, socials, and a playable Islamic figures game
-built into the page itself, no separate app or route.
-
-The game: seven rounds per session, tap-to-answer or write-the-name-in-Arabic
-modes, a share card rendered to canvas, and a daily streak kept in
-localStorage.
+Client-first portfolio for Ebrahim Youssef, a front-end engineer and product builder. The static site presents selected work, services, process, personal context, direct contact routes, and an optional Islamic figures game.
 
 ## Stack
 
-- Astro 7, static output, no server.
-- One React island: the game drawer. It hydrates on idle and its code is
-  split from the rest of the page, so playing the game costs nothing until
-  someone opens it.
-- Plain CSS with a small custom-property token system. No Tailwind, no
-  CSS-in-JS.
-- Vitest covers the game's pure logic: Arabic answer matching, the game
-  state reducer, and the streak calculation.
+- Astro 7 with static output.
+- One deferred React island for the game drawer.
+- TypeScript, plain CSS, and a small brand token system.
+- Vitest for game logic and portfolio content invariants.
+- Deterministic build verification for rendered structure, metadata, sitemap, and assets.
 
 ## Requirements
 
-Node 22.12 or newer, pnpm.
+- Node.js 22.12 or newer.
+- pnpm 11 or newer.
 
-## Commands
+## Local development
 
+```sh
+pnpm install --frozen-lockfile
+pnpm astro dev --background
+pnpm astro dev status
+pnpm astro dev logs
+pnpm astro dev stop
 ```
-pnpm install   # install dependencies
-pnpm dev       # local dev server at localhost:4321
-pnpm build     # production build to ./dist
-pnpm test      # run the Vitest suite
-pnpm check     # astro check (types, a11y hints)
-pnpm icons     # regenerate favicons and og.png from assets/brand/
+
+## Quality gate
+
+```sh
+pnpm verify
 ```
 
-## Deploy
+This runs the complete Vitest suite, Astro diagnostics, the production build, and the generated-output verifier.
 
-Cloudflare Pages builds and deploys the `main` branch automatically on
-push. Other branches don't deploy.
+## Cloudflare Pages
+
+The production project uses:
+
+- Production branch: `main`
+- Build command: `pnpm build`
+- Build output directory: `dist`
+- Canonical domain: `https://ebrahimyoussef.com`
+- Required environment variables: none
+
+`wrangler.jsonc` mirrors the static output directory for authenticated Wrangler inspection or direct-upload workflows. Normal production delivery should remain connected to the GitHub `main` branch so Cloudflare can associate each deployment with its source commit.
+
+Before release, verify GitHub push access, Cloudflare account/project access, the custom-domain and DNS state, and the production deployment's commit SHA. A release is complete only when the canonical domain serves the merged `main` build and the public smoke checks pass.
+
+## Brand assets
+
+Run `pnpm icons` to regenerate favicon and social image assets from `assets/brand/`.

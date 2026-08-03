@@ -12,6 +12,7 @@
     "astro": "astro",
     "test": "vitest run",
     "check": "astro check",
+    "verify": "pnpm test && astro check && astro build && node scripts/verify-build.mjs",
     "icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
