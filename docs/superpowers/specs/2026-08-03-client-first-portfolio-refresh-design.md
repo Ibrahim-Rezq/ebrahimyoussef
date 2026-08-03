@@ -59,7 +59,7 @@ Metadata and structured data are generated from centralized site information. Ex
 
 ## Failure handling
 
-Missing optional destinations must degrade safely: a missing booking URL removes or replaces the booking action instead of rendering a dead link. External project and social links must be checked during release. The game retains clear user feedback for browser features such as sharing or clipboard access that may fail.
+Missing booking data must fail validation and block release until the real URL or an explicitly user-approved named fallback is configured; it must never silently remove the approved action or render a dead link. External project and social links must be checked during release. The game retains clear user feedback for browser features such as sharing or clipboard access that may fail.
 
 The static build must fail visibly on type, content, or integration errors. Cloudflare deployment is not considered complete until the production URL returns the built page and core assets successfully.
 
