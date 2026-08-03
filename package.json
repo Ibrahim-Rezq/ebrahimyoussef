@@ -30,11 +30,5 @@
     "sharp": "^0.35.3",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
   }
 }
