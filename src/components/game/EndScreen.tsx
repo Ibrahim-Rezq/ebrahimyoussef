@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { drawShareCard, headlineText, shareMessage } from './shareCard';
+import { copyShareText, drawShareCard, headlineText, shareMessage } from './shareCard';
 
 interface EndScreenProps {
   score: number;
@@ -38,16 +38,20 @@ export default function EndScreen({
       if (canShareFiles && file && navigator.share) {
         try {
           await navigator.share({ files: [file], text });
-        } catch {
-          /* user dismissed the native share sheet — leave silently, no clipboard fallback */
+        } catch (error) {
+          if (!(error instanceof DOMException && error.name === 'AbortError')) {
+            setShareError("Couldn't share — the browser rejected the request.");
+          }
         }
         return;
       }
 
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(text);
+      const copyResult = await copyShareText(navigator.clipboard, text);
+      if (copyResult === 'copied') {
         setToast('Copied!');
         window.setTimeout(() => setToast(null), 2200);
+      } else {
+        setShareError("Couldn't share — clipboard access is unavailable in this browser.");
       }
     } catch {
       setShareError("Couldn't share — copy blocked by the browser.");

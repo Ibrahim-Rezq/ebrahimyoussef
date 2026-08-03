@@ -26,6 +26,10 @@
   --content-w: 72rem;
   --section-pad: clamp(4.5rem, 10vw, 8rem);
   --focus: #7040a0;
+  --r-md: .625rem;
+  --r-lg: 1.125rem;
+  --shadow-lift: 0 .75rem 2.5rem rgb(43 33 24 / .14);
+  --ease-spring: cubic-bezier(.34, 1.4, .64, 1);
 }
 
 * { box-sizing: border-box; }
@@ -50,11 +54,11 @@ button, input { font: inherit; }
 
 .button, .btn { min-height: 2.8rem; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .75rem 1.15rem; border: 1px solid transparent; border-radius: 0; font-weight: 650; line-height: 1.2; text-align: center; text-decoration: none; cursor: pointer; transition: background-color .18s ease, border-color .18s ease, color .18s ease, translate .18s ease; }
 .button-primary, .btn-primary { background: var(--terra-deep); color: #fffaf3; }
-.button-primary:hover, .btn-primary:hover { background: var(--terra-hover); }
 .button-secondary, .btn-ghost { border-color: var(--line-strong); background: transparent; color: var(--ink); }
-.button-secondary:hover, .btn-ghost:hover { border-color: var(--ink); background: rgb(255 255 255 / .25); }
 
 @media (hover: hover) and (pointer: fine) {
+  .button-primary:hover, .btn-primary:hover { background: var(--terra-hover); }
+  .button-secondary:hover, .btn-ghost:hover { border-color: var(--ink); background: rgb(255 255 255 / .25); }
   .button:hover, .btn:hover { translate: 0 -2px; }
 }
 

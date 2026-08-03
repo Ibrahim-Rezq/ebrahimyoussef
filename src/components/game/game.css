@@ -69,9 +69,6 @@ dialog.game-drawer::backdrop {
   cursor: pointer;
   transition: background 0.15s;
 }
-.drawer-close:hover {
-  background: var(--surface);
-}
 
 .drawer-loading {
   padding: 4rem 1.5rem;
@@ -178,10 +175,6 @@ dialog.game-drawer::backdrop {
     transform 0.15s var(--ease-spring),
     border-color 0.15s,
     background 0.15s;
-}
-.tap-option:hover {
-  border-color: var(--terra-deep);
-  transform: translateY(-2px);
 }
 .tap-option-ar {
   font-size: 1.5rem;
@@ -340,4 +333,14 @@ dialog.game-drawer::backdrop {
   margin: 0.5rem 0 0;
   font-size: 0.9rem;
   color: var(--ink-soft);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .drawer-close:hover {
+    background: var(--surface);
+  }
+  .tap-option:hover {
+    border-color: var(--terra-deep);
+    transform: translateY(-2px);
+  }
 }

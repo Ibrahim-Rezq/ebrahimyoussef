@@ -25,6 +25,19 @@ export function shareMessage({ score, total, seconds }: ShareData): string {
   return `I named ${score} of ${total} Islamic figures in ${seconds}s — play at ${SITE_URL}`;
 }
 
+interface TextClipboard {
+  writeText(text: string): Promise<void>;
+}
+
+export async function copyShareText(
+  clipboard: TextClipboard | undefined,
+  text: string,
+): Promise<'copied' | 'unavailable'> {
+  if (!clipboard) return 'unavailable';
+  await clipboard.writeText(text);
+  return 'copied';
+}
+
 /** Hand-drawn version of the square-Kufic "EY" octagon monogram (see Monogram.astro), scaled onto canvas. */
 function drawMonogram(ctx: CanvasRenderingContext2D, cx: number, cy: number, scale: number) {
   ctx.save();
