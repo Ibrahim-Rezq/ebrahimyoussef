@@ -1,0 +1,36 @@
+---
+import Monogram from './Monogram.astro';
+import { SITE } from '../data/site';
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label={`${SITE.name}, back to top`}>
+      <Monogram size={36} />
+      <span>{SITE.name}</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <ul>
+        {SITE.navigation.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <a class="header-contact" href={SITE.emailUrl}>Start a project</a>
+  </div>
+</header>
+
+<style>
+  .site-header { position: relative; z-index: 20; padding-block: 1rem; border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; gap: 1.5rem; }
+  .brand { display: inline-flex; align-items: center; gap: .7rem; color: var(--ink); font-weight: 650; text-decoration: none; white-space: nowrap; }
+  nav { margin-inline: auto; }
+  ul { display: flex; align-items: center; gap: clamp(.8rem, 2vw, 1.5rem); margin: 0; padding: 0; list-style: none; }
+  nav a { color: var(--ink-soft); font-size: .88rem; font-weight: 550; text-decoration: none; }
+  nav a:hover { color: var(--terra-deep); }
+  .header-contact { color: var(--ink); font-size: .88rem; font-weight: 650; text-underline-offset: .3rem; white-space: nowrap; }
+  @media (max-width: 48rem) {
+    .header-inner { flex-wrap: wrap; }
+    nav { order: 3; width: 100%; overflow-x: auto; scrollbar-width: none; }
+    ul { width: max-content; min-width: 100%; justify-content: space-between; }
+  }
+  @media (max-width: 27rem) { .brand span { display: none; } }
+</style>

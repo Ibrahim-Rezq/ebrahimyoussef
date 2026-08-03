@@ -1,68 +1,33 @@
 ---
-import Monogram from './Monogram.astro';
 import Arabesque from './Arabesque.astro';
+import Monogram from './Monogram.astro';
 import { SITE } from '../data/site';
 ---
 
-<header class="hero">
+<section class="hero" id="top" aria-labelledby="hero-title">
   <Arabesque variant="tile" />
+  <div class="hero-watermark" aria-hidden="true"><Monogram size={420} /></div>
   <div class="wrap hero-inner">
-    <div class="hero-mark">
-      <Monogram size={56} />
-      <p class="hero-name">{SITE.name}</p>
+    <p class="eyebrow">{SITE.role} · Available for selected projects</p>
+    <h1 id="hero-title">{SITE.tagline}</h1>
+    <p class="hero-copy">From focused business websites to production-ready interfaces, I turn ideas into accessible experiences that are easy to use and maintain.</p>
+    <div class="hero-actions" aria-label="Contact options">
+      <a class="button button-primary" href={SITE.emailUrl}>Email me about a project</a>
+      <a class="button button-secondary" href={SITE.bookingUrl}>Book a call</a>
     </div>
-    <h1>{SITE.tagline}</h1>
-    <p class="hero-sub">I build products for the Muslim web — and share everything I learn along the way.</p>
-    <div class="hero-cta" id="play">
-      <slot name="play-trigger" />
-      <a class="btn btn-ghost" href="#products">See what I build</a>
-    </div>
+    <a class="work-link" href="#work">See selected work <span aria-hidden="true">↓</span></a>
   </div>
-</header>
+</section>
 
 <style>
-  .hero {
-    position: relative;
-    overflow: hidden;
-    padding-block: clamp(5rem, 12vh, 8rem);
-  }
-  .hero-inner {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .hero-mark {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  .hero-name {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--ink-soft);
-    margin: 0;
-  }
-  h1 {
-    font-size: clamp(2rem, 5vw, 3.25rem);
-    font-weight: 700;
-    margin: 0;
-    max-width: 20ch;
-  }
-  .hero-sub {
-    font-size: 1.125rem;
-    color: var(--ink-soft);
-    max-width: 42ch;
-    margin: 1.25rem 0 2rem;
-  }
-  .hero-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
+  .hero { position: relative; min-height: min(47rem, 82vh); display: grid; align-items: center; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .hero-inner { position: relative; z-index: 2; width: 100%; padding-block: clamp(5rem, 12vw, 9rem); }
+  .hero-watermark { position: absolute; right: max(-7rem, -8vw); top: 50%; translate: 0 -50%; opacity: .075; rotate: 7deg; }
+  h1 { max-width: 16ch; margin: 0; font-size: var(--step-6); font-weight: 740; letter-spacing: -.055em; line-height: .98; text-wrap: balance; }
+  .hero-copy { max-width: 51ch; margin: 1.7rem 0 0; color: var(--ink-soft); font-size: var(--step-1); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+  .work-link { display: inline-flex; gap: .55rem; margin-top: 3.5rem; color: var(--ink); font-size: .88rem; font-weight: 650; text-underline-offset: .35rem; }
+  :global(.hero > .ey-arabesque-tile) { opacity: .035; }
+  @media (max-width: 48rem) { .hero { min-height: auto; } .hero-watermark { right: -13rem; opacity: .055; } }
+  @media (max-width: 30rem) { .hero-actions .button { width: 100%; } }
 </style>

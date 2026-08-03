@@ -1,0 +1,26 @@
+---
+import { products } from '../data/products';
+const game = products.find((product) => product.id === 'figures-game');
+---
+
+<section id="play" class="section game-feature" aria-labelledby="game-title">
+  <div class="wrap game-layout">
+    <div>
+      <p class="eyebrow">A little personal proof</p>
+      <h2 id="game-title" class="section-heading">Try the interface, not just the portfolio.</h2>
+    </div>
+    <div class="game-copy">
+      <p>{game?.contribution}</p>
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .game-feature { background: var(--ink); color: var(--base); }
+  .game-layout { display: grid; grid-template-columns: 1fr .8fr; gap: clamp(2rem, 7vw, 7rem); align-items: end; }
+  .game-layout h2 { max-width: 15ch; }
+  .game-copy p { max-width: 42ch; color: #d8cfc4; }
+  .game-copy :global(.btn) { margin-top: 1rem; background: var(--base); color: var(--ink); }
+  @media (max-width: 42rem) { .game-layout { grid-template-columns: 1fr; align-items: start; } }
+</style>
